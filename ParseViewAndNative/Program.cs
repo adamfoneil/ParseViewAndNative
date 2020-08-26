@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ParseViewAndNative
 {
-    static class Program
+    public static class Program
     {
         public static string[] Extensions = new string[] { ".pdf", ".dwg", ".rvt", ".xod", ".jpg", ".jpeg", ".pptx", ".docx", ".doc", ".xlsx" };
 
