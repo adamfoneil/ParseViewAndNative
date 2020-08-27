@@ -26,8 +26,10 @@ namespace ParseViewAndNative
                     if (!string.IsNullOrEmpty(result)) return (i, result);
                 }
 
-                return (0, fileNames.First());
+                return (0, fileNames.First(name => hasUnknownExtension(name)));
             }
+
+            bool hasUnknownExtension(string fileName) => !Extensions.Contains(Path.GetExtension(fileName));
         }
 
         // solution by nick s

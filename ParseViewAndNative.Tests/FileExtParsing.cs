@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -54,6 +55,17 @@ namespace ParseViewAndNative.Tests
                     output= ("file.doc", "file.sketch")
                 }
             };
+
+            /*
+            this is to find failing cases
+            cases.ToList().ForEach(c =>
+            {
+                var output = method(c.input);
+                if (!method(c.input).Equals(c.output))
+                {
+                    Debugger.Break();
+                }
+            });*/
 
             Assert.IsTrue(cases.All(c => method(c.input).Equals(c.output)), $"Holy guaco batman! {method.Method.Name} failed!");
         }
