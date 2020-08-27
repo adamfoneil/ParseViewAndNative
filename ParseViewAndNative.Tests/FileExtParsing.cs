@@ -1,15 +1,14 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace ParseViewAndNative.Tests
 {
     [TestClass]
     public class FileExtParsing
-    {
-        public void SampleCases(Func<string[], (string view, string native)> method)
+    {       
+        [TestMethod]
+        public void SampleCases()
         {
             var cases = new[]
             {
@@ -46,34 +45,11 @@ namespace ParseViewAndNative.Tests
                 new
                 {
                     input = new string[] { "file.sketch", "file.doc", "file.txt" },
-                    output= ("file.doc", "file.sketch")
-                },
-                new
-                {
-                    input = new string[] { "file.doc", "file.sketch", "file.txt" },
-                    output= ("file.doc", "file.sketch")
+                    output= ("file.doc", "file.sketch")                    
                 }
             };
 
-            Assert.IsTrue(cases.All(c => method(c.input).Equals(c.output)), $"Holy guaco batman! {method.Method.Name} failed!");
+            Assert.IsTrue(cases.All(c => Program.ParseViewAndNative(c.input).Equals(c.output)));
         }
-
-        [TestMethod]
-        public void ParseViewAndNative()
-        {
-            SampleCases(Solutions.ParseViewAndNative);
-        }
-
-        [TestMethod]
-        public void ParseViewAndNative2()
-        {
-            SampleCases(Solutions.ParseViewAndNative2);
-        }
-
-        // [TestMethod]
-        // public void ParseViewAndNative3()
-        // {
-        //     SampleCases(Program.ParseViewAndNative3);
-        // }
     }
 }
